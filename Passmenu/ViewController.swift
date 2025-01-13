@@ -79,6 +79,13 @@ class ViewController: NSViewController {
         }
     }
     
+    // serod: to refocus on prefvious application
+    override func viewDidDisappear() {
+        if let previousApp = NSWorkspace.shared.menuBarOwningApplication {
+            previousApp.activate(options: [.activateAllWindows, .activateIgnoringOtherApps])
+        }
+    }
+    
     func notify(title: String, message: String) {
         let notification = NSUserNotification();
         notification.title = title

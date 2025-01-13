@@ -52,9 +52,14 @@ class PassFacade: NSObject {
         guard filemanager.isExecutableFile(atPath: passBinary) else {
             throw GetPassError.NoBinary(path: passBinary)
         }
-
+        
+        // serod: to use pass otp if folder starts with opt
         task.launchPath = passBinary
-        task.arguments = [p]
+        if p.hasPrefix("otp/") {
+            task.arguments = ["otp", p]
+        } else {
+            task.arguments = [p]
+        }
         task.standardOutput = outpipe
         task.standardError = errpipe
         // Set up environment explicitly - the default PATH doesn't work with Homebrew
