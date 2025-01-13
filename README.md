@@ -29,6 +29,12 @@ installed, and your `~/.gnupg/gpg-agent.conf` should contain a line like:
 pinentry-program /usr/local/bin/pinentry-mac
 ```
 
+Disable save gpg password to keychain:
+
+```
+defaults write org.gpgtools.common UseKeychain NO
+```
+
 When you run Passmenu, it will show a status menu on the menu bar that says
 "pass". You can click this to quit or to search for a password. You can also
 press the global shortcut Command-Option-P at any time to open the search
